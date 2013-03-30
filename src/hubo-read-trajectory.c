@@ -136,13 +136,21 @@ int huboLoop() {
 	memset( &H_ref,   0, sizeof(H_ref));
 
         size_t fs;
-	int r = ach_get( &chan_hubo_ref, &H_ref, sizeof(H_ref), &fs, NULL, ACH_O_COPY );
+	int r = 0;
+/*	int r = ach_get( &chan_hubo_ref, &H_ref, sizeof(H_ref), &fs, NULL, ACH_O_COPY );
 	if(ACH_OK != r) {
 		if(hubo_debug) {
                        	printf("Ref ini r = %s\n",ach_result_to_string(r));}
 		}
 	else{   assert( sizeof(H_ref) == fs ); }
+*/      
 
+        H_ref.active[REB] = HUBO_JOINT_REF_ACTIVE;
+        H_ref.active[RSP] = HUBO_JOINT_REF_ACTIVE;
+        H_ref.active[RSR] = HUBO_JOINT_REF_ACTIVE;
+        H_ref.active[RSY] = HUBO_JOINT_REF_ACTIVE;
+        H_ref.active[RWY] = HUBO_JOINT_REF_ACTIVE;
+        H_ref.active[RWP] = HUBO_JOINT_REF_ACTIVE;
 
         // time info
         struct timespec t;
@@ -398,7 +406,8 @@ int main(int argc, char **argv) {
 
 
         /* open ach channel */
-        int r = ach_open(&chan_hubo_ref, HUBO_CHAN_REF_NAME , NULL);
+        //int r = ach_open(&chan_hubo_ref, HUBO_CHAN_REF_NAME , NULL);
+        int r = ach_open(&chan_hubo_ref, HUBO_CHAN_MULTI_CHAN_NAME , NULL);
         assert( ACH_OK == r );
  
 	huboLoop();
