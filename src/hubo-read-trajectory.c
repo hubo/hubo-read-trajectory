@@ -127,6 +127,8 @@ ach_channel_t chan_hubo_state;    // hubo-ach-state
 ach_channel_t chan_hubo_param;    // hubo-ach-param
 ach_channel_t chan_hubo_from_sim; // ach channel for sim
 
+int turnRadFlag = 0;
+double turnRad = 0.0;
 int debug = 0;
 int hubo_debug = 1;
 int i = 0;
@@ -224,6 +226,8 @@ int runTraj(char* s, int mode, struct hubo_ref *r, struct timespec *t) {
 		}
 
 		getArg(str, r); 	
+
+		if(turnRadFlag == 1) r->ref[RHY] = r->ref[RHY]*turnRad;
 // ------------------------------------------------------------------------------
 // ---------------[ DO NOT EDIT BELOW THIS LINE]---------------------------------
 // ------------------------------------------------------------------------------
@@ -336,6 +340,19 @@ int main(int argc, char **argv) {
                 if(strcmp(argv[i], "-s") == 0) { // debug
                         mode = HUBO_VIRTUAL_MODE_OPENHUBO;
                 }
+                if(strcmp(argv[i], "-w") == 0) {
+			if( argc > (i+1)) {
+	                        double turnRadTmp = atof(argv[i+1]);
+				if (turnRadTmp > 0.25) turnRad = 0.25;
+				else if (turnRadTmp < -0.25) turnRad = -0.25;
+				else turnRad = turnRadTmp;
+				turnRadFlag = 1;
+				printf("Turn = %f rad\n", turnRad);
+			}
+			else {
+				printf("ERROR: Bad Turn Rad Value\n");
+			}
+                }
                 if(strcmp(argv[i], "-n") == 0) {
 			if( argc > (i+1)) {
 	                        fileName = argv[i+1];
@@ -370,10 +387,10 @@ int main(int argc, char **argv) {
 			printf("\t\t-h   help menu\n");
 			printf("\t\t-n   change trajectory\n");
 			printf("\t\t\t\tdefault: no file\n");
-			printf("\t\t\t\tatguements: filename\n");
+			printf("\t\t\t\targuements: filename\n");
 			printf("\t\t-f   change frequency\n");
 			printf("\t\t\tdefault: 25hz\n");
-			printf("\t\t\tatguements: frequency\n");
+			printf("\t\t\targuements: frequency\n");
 			printf("\t\t\t\toptions (hz):\n");
 			printf("\t\t\t\t\t10\n");
 			printf("\t\t\t\t\t25\n");
@@ -381,6 +398,11 @@ int main(int argc, char **argv) {
 			printf("\t\t\t\t\t100\n");
 			printf("\t\t\t\t\t200\n");
 			printf("\t\t\t\t\t500\n");
+                        printf("\t\t-w   Walking Turn");
+			printf("\t\t\tdefault: 0\n");
+			printf("\t\t\targuements: rad to turn\n");
+			printf("\t\t\tMin = -0.25\n");
+			printf("\t\t\tMax = 0.25\n");
 			printf("\n");
 			printf("File format (Each Column)\n");
 			printf("\tRHY RHR RHP RKN RAP RAR LHY LHR LHP LKN LAP LAR RSP RSR RSY REB RWY RWR RWP LSP LSR LSY LEB LWY LWR LWP NKY NK1 NK2 WST RF1 RF2 RF3 RF4 RF5 LF1 LF2 LF3 LF4 LF5\n");
