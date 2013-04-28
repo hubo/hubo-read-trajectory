@@ -37,15 +37,15 @@ curses.cbreak()
 stdscr.keypad(1)
 
 sIndent = 11
-sLine = 7
+sLine = 9
 
 stdscr.refresh()
 
 
-stdscr.addstr(0, 2, "Hubo Remote: Daniel M. Lofaro <dan@danLofaro.com>")
-stdscr.addstr(1, 2, "-------------------------------------------------")
-stdscr.addstr(3, 2, "Inputs: Arrow Keys (UP, LEFT, RIGHT)")
-stdscr.addstr(5,2,"Hit 'q' to quit")
+stdscr.addstr(2, 2, "Hubo Remote: Daniel M. Lofaro <dan@danLofaro.com>")
+stdscr.addstr(3, 2, "-------------------------------------------------")
+stdscr.addstr(4, 2, "Inputs: Arrow Keys (UP, LEFT, RIGHT)")
+stdscr.addstr(7,2,"Hit 'q' to quit")
 
 stdscr.addstr(sLine,2,"Status:")
 
@@ -67,11 +67,11 @@ while key != ord('q'):
         stdscr.refresh()
         c.getoutput('sudo ./hubo-read-trajectory -s -f 200 -n walking_traj/walk1sZp05m.traj')
     elif key == curses.KEY_LEFT: 
-        stdscr.addstr(sLine, sIndent, "Turn CCW          ")
+        stdscr.addstr(sLine, sIndent, "Turning CCW          ")
         stdscr.refresh()
         c.getoutput('sudo ./hubo-read-trajectory -s -f 200 -w -0.3 -n walking_traj/walk1sTurnBase0m.traj')
     elif key == curses.KEY_RIGHT: 
-        stdscr.addstr(sLine, sIndent, "Turn CW           ")
+        stdscr.addstr(sLine, sIndent, "Turning CW           ")
         stdscr.refresh()
         c.getoutput('sudo ./hubo-read-trajectory -s -f 200 -w 0.3 -n walking_traj/walk1sTurnBase0m.traj')
 
