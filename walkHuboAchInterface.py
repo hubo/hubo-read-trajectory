@@ -76,8 +76,7 @@ while True:
   try:
     stdscr.addstr(sLine, sIndent,"Give Command                         ")
     stdscr.refresh()
-    [statusw, framesizew] = wch.get(wcmd, wait=False, last=False)
-#    [statusw, framesizew] = wch.get(wcmd, wait=True, last=False)
+    [statusw, framesizew] = wch.get(wcmd, wait=True, last=False)
     if wcmd.cmd == hw.forward: 
         stdscr.addstr(sLine, sIndent, "Going Forward                   ")
         stdscr.refresh()
