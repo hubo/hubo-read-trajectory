@@ -2,6 +2,7 @@
 MakeAch()
 {
 	ach -1 -C hubo-walking -m 10 -n 3000
+	sudo chmod 777 /dev/shm/achshm-hubo-*
 }
 
 Start()
@@ -14,7 +15,6 @@ case "$1" in
 	'remote')
 		MakeAch
 		achd -r push $2 hubo-walking &
-		Start
 	;;
 
 	'makeach')
