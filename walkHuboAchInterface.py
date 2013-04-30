@@ -76,7 +76,8 @@ while True:
   try:
     stdscr.addstr(sLine, sIndent,"Give Command                         ")
     stdscr.refresh()
-    [statusw, framesizew] = wch.get(wcmd, wait=True, last=False)
+    [statusw, framesizew] = wch.get(wcmd, wait=False, last=False)
+#    [statusw, framesizew] = wch.get(wcmd, wait=True, last=False)
     if wcmd.cmd == hw.forward: 
         stdscr.addstr(sLine, sIndent, "Going Forward                   ")
         stdscr.refresh()
@@ -94,7 +95,7 @@ while True:
     else: 
         stdscr.addstr(sLine, sIndent, "Bad Command                    ")
         stdscr.refresh()
-    time.sleep(2.0)
+    time.sleep(5.0)
     wch.flush()
   except KeyboardInterrupt:
     break

@@ -42,8 +42,8 @@ wch = ach.Channel(hw.HUBO_CHAN_WALKING_NAME)
 wch.flush()
 wcmd = hw.HUBO_WALKING()
 
-wcmd.cmd = hw.forward5
-#wcmd.cmd = hw.home
+#wcmd.cmd = hw.forward5
+wcmd.cmd = hw.home
 
 #wch.put(wcmd)
 wch.put(wcmd)
