@@ -74,15 +74,15 @@ c.getoutput('./walk.sh walkready')
 key = ''
 while True:
   try:
-    stdscr.addstr(sLine, sIndent,"Give Command       ")
+    stdscr.addstr(sLine, sIndent,"Give Command                         ")
     stdscr.refresh()
     [statusw, framesizew] = wch.get(wcmd, wait=True, last=False)
     if wcmd.cmd == hw.forward: 
-        stdscr.addstr(sLine, sIndent, "Going Forward     ")
+        stdscr.addstr(sLine, sIndent, "Going Forward                   ")
         stdscr.refresh()
         c.getoutput('./walk.sh forward')
     elif wcmd.cmd == hw.forward5: 
-        stdscr.addstr(sLine, sIndent, "Going Forward     ")
+        stdscr.addstr(sLine, sIndent, "Going Forward                   ")
         stdscr.refresh()
         c.getoutput('./walk.sh forward5')
     elif wcmd.cmd == hw.turn: 
@@ -92,7 +92,7 @@ while True:
     elif wcmd.cmd == hw.home: 
         break
     else: 
-        stdscr.addstr(sLine, sIndent, "Bad Command           ")
+        stdscr.addstr(sLine, sIndent, "Bad Command                    ")
         stdscr.refresh()
     time.sleep(2.0)
     wch.flush()
