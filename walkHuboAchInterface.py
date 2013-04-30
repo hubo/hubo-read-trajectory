@@ -67,7 +67,7 @@ stdscr.addstr(sLine,2,"Status:")
 stdscr.addstr(sLine, sIndent,"Going to WALK READY       ")
 stdscr.refresh()
 c.getoutput('./walk.sh walkready')
-
+time.sleep(2.0)
 
 
 
