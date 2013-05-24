@@ -271,9 +271,8 @@ int runTraj(char* s, int mode,  struct hubo_ref *r, struct timespec *t, struct h
 // ------------------------------------------------------------------------------
 // ---------------[ DO NOT EDIT BELOW THIS LINE]---------------------------------
 // ------------------------------------------------------------------------------
-
-		// Cheeting No more RAP or LAP
 /*
+		// Cheeting No more RAP or LAP
 		r->ref[RHP] = 0.0;
 		r->ref[LHP] = 0.0;
 		r->ref[RAP] = 0.0;
@@ -285,7 +284,6 @@ int runTraj(char* s, int mode,  struct hubo_ref *r, struct timespec *t, struct h
 		r->ref[RHR] = 0.0;
 		r->ref[LHR] = 0.0;
 */
-
 /*
 		for( i = 0 ; i < HUBO_JOINT_COUNT; i++){
 			r->mode[i] = HUBO_REF_MODE_REF;
